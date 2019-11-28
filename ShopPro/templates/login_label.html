@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/login_label.css">
+</head>
+<body>
+    <form id="login" class="form" method="post" onsubmit="return valid()">
+        {% csrf_token %}
+        <p>
+            <input id="username" class="not_empty" name="username" type="text" placeholder="用户名">
+            <br>
+            <span class="error_message"></span>
+        </p>
+        <p>
+            <input id="password" class="not_empty" name="password" type="password" placeholder="密码">
+            <br>
+            <span class="error_message"></span>
+        </p>
+        <p>
+            <input class="btn" type="submit" value="注册">
+        </p>
+    </form>
+    <script src="/static/js/jquery-3.2.0.js"></script>
+    <script>
+        function valid() {
+            var submit = true;
+            //不可以为空
+            $(".not_empty").each(function () {
+                if($(this).val() == ""){
+                    submit = false;
+                    var label = $(this).attr("placeholder");
+                    var error_message = label + "不可以为空";
+                    $(this).siblings("span").text(error_message)
+                }
+            });
+            //密码必须是6-20位数字和字母组合
+            var reg = /^[A-Za-z0-9]{6,10}$/;
+            var password = $("#password").val();
+            if(!reg.test(password)){
+                submit = false;
+                $("#password").siblings("span").text("密码必须是6-10位的字符组合");
+                console.log("密码必须是6-10位的字符组合")
+            }
+            return submit
+        }
+    </script>
+</body>
+</html>

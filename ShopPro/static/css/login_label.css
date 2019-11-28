@@ -1,0 +1,19 @@
+
+*{
+   font-family: "Microsoft YaHei UI";
+}
+
+.form input {
+   font-size: 36px;
+   border-radius: 10px;
+   width: 70%;
+}
+
+.btn {
+    background-color: sandybrown;
+}
+
+.error_message {
+   font-size: 28px;
+   color: red;
+}
